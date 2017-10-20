@@ -23,4 +23,16 @@ public interface ItemService {
         带分页的查询所有商品
      */
     Result<TbItemCustom> listItems(Page page);
+
+
+    /**
+     * 通过商品编号批量修改
+     * @param ids
+     * @return
+     */
+    int updateItemsByIds(List<Long> ids);
+
+    int updateUpItemsByIds(List<Long> ids);
+
+    int updateDownItemsByIds(List<Long> ids);
 }
