@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.day.ttshop.dao.TbItemCustomMapper" >
+
+  <sql id="Base_Column_List" >
+    i.id, i.title, i.sell_point as sellPoint, i.price, i.num,
+    i.barcode, i.image, i.cid, i.status, i.created, i.updated,
+    c.name AS catName
+  </sql>
+<select id="listItemsByPage" parameterType="com.day.common.dto.Page" resultType="com.day.ttshop.pojo.vo.TbItemCustom">
+  SELECT
+  <include refid="Base_Column_List"/>
+  FROM tb_item i
+  LEFT JOIN tb_item_cat c
+  ON i.cid=c.id
+  ORDER BY i.id
+  limit #{offset},#{rows}
+</select>
+  
+  <select id="countItems" resultType="java.lang.Long">
+    SELECT
+    count(*)
+    from tb_item
+    order by id
+  </select>
+</mapper>
