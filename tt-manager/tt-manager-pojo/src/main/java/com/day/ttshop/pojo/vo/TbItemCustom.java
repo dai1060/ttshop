@@ -6,6 +6,16 @@ public class TbItemCustom extends TbItem {
     //显示分类的名称
     private String catName;
 
+    private String priceView;
+
+    public String getPriceView() {
+        return priceView;
+    }
+
+    public void setPriceView(String priceView) {
+        this.priceView = priceView;
+    }
+
     public String getCatName() {
         return catName;
     }

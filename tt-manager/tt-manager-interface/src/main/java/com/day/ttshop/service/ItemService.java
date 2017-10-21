@@ -1,5 +1,6 @@
 package com.day.ttshop.service;
 
+import com.day.common.dto.Order;
 import com.day.common.dto.Page;
 import com.day.common.dto.Result;
 import com.day.ttshop.pojo.po.TbItem;
@@ -22,7 +23,7 @@ public interface ItemService {
     /*
         带分页的查询所有商品
      */
-    Result<TbItemCustom> listItems(Page page);
+    Result<TbItemCustom> listItems(Page page, Order order);
 
 
     /**

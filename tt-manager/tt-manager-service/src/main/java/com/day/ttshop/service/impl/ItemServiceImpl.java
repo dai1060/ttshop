@@ -1,5 +1,6 @@
 package com.day.ttshop.service.impl;
 
+import com.day.common.dto.Order;
 import com.day.common.dto.Page;
 import com.day.common.dto.Result;
 import com.day.ttshop.dao.TbItemCustomMapper;
@@ -11,7 +12,9 @@ import com.day.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -30,11 +33,24 @@ public class ItemServiceImpl implements ItemService {
         return itemDao.selectByExample(null);
     }
 
-    @Override
-    public Result<TbItemCustom> listItems(Page page) {
+/*    @Override   参数传入
+    public Result<TbItemCustom> listItems(Page page, Order order) {
         //通过itemCustomDao获取total和rows
         long total = itemCustomDao.countItems();
-        List<TbItemCustom> rows = itemCustomDao.listItemsByPage(page);
+        List<TbItemCustom> rows = itemCustomDao.listItemsByPage(page,order);
+        Result<TbItemCustom> rs = new Result<TbItemCustom>();
+        rs.setRows(rows);
+        rs.setTotal(total);
+        return rs;
+    }*/
+    @Override  //多参数集合传入
+    public Result<TbItemCustom> listItems(Page page, Order order) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("page", page);
+        map.put("order", order);
+        //通过itemCustomDao获取total和rows
+        long total = itemCustomDao.countItems();
+        List<TbItemCustom> rows = itemCustomDao.listItemsByPage(map);
         Result<TbItemCustom> rs = new Result<TbItemCustom>();
         rs.setRows(rows);
         rs.setTotal(total);

@@ -3,24 +3,33 @@
 <mapper namespace="com.day.ttshop.dao.TbItemCustomMapper" >
 
   <sql id="Base_Column_List" >
-    i.id, i.title, i.sell_point as sellPoint, i.price, i.num,
+    i.id, i.title, i.sell_point as sellPoint, i.price, format(i.price/100,2) as priceView, i.num,
     i.barcode, i.image, i.cid, i.status, i.created, i.updated,
     c.name AS catName
   </sql>
-<select id="listItemsByPage" parameterType="com.day.common.dto.Page" resultType="com.day.ttshop.pojo.vo.TbItemCustom">
+<select id="listItemsByPage"  resultType="com.day.ttshop.pojo.vo.TbItemCustom">
   SELECT
   <include refid="Base_Column_List"/>
   FROM tb_item i
   LEFT JOIN tb_item_cat c
   ON i.cid=c.id
-  ORDER BY i.id
-  limit #{offset},#{rows}
+  WHERE i.status != 3
+  <choose>
+    <when test="order != null and order.sort != null and order.order != null">
+      ORDER BY CONVERT (i.${order.sort} USING gbk)${order.order}
+    </when>
+    <otherwise>
+      ORDER BY i.id DESC
+    </otherwise>
+  </choose>
+  limit #{page.offset},#{page.rows}
 </select>
   
   <select id="countItems" resultType="java.lang.Long">
     SELECT
     count(*)
-    from tb_item
+    from tb_item i
+    WHERE i.status != 3
     order by id
   </select>
 </mapper>

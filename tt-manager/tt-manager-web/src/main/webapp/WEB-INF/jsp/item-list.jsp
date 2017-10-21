@@ -126,6 +126,7 @@
         }
     }];
     $('#dg').datagrid({
+        multiSort:true,
         pageSize:20,
         pageList:[20,40,50],
         toolbar:toolbar,
@@ -134,8 +135,8 @@
         url:'items',
         columns:[[
             {field:'ck',checkbox:true},
-            {field:'id',title:'商品编号',width:100},
-            {field:'title',title:'商品名称',width:100},
+            {field:'id',title:'商品编号',width:100,sortable:true},
+            {field:'title',title:'商品名称',width:100,sortable:true},
             {field:'sellPoint',title:'卖点',width:100},
             {field:'catName',title:'类别',width:100},
             {field:'status',title:'状态',width:100,formatter:function(value,row,index){
@@ -161,7 +162,8 @@
             }},
             {field:'created',title:'创建时间',formatter:function(value,row,index){
                 return moment(value).format('MMM Do YYYY');
-            }}
+            }},
+            {field:'priceView',title:'价格',width:100}
         ]]
     });
 
