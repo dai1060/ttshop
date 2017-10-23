@@ -5,6 +5,7 @@ import com.day.common.dto.Page;
 import com.day.common.dto.Result;
 import com.day.ttshop.pojo.po.TbItem;
 import com.day.ttshop.pojo.vo.TbItemCustom;
+import com.day.ttshop.pojo.vo.TbItemQuery;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface ItemService {
     /*
         带分页的查询所有商品
      */
-    Result<TbItemCustom> listItems(Page page, Order order);
+    Result<TbItemCustom> listItems(Page page, Order order,TbItemQuery query);
 
 
     /**

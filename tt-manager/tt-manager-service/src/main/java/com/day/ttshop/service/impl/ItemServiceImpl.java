@@ -8,6 +8,7 @@ import com.day.ttshop.dao.TbItemMapper;
 import com.day.ttshop.pojo.po.TbItem;
 import com.day.ttshop.pojo.po.TbItemExample;
 import com.day.ttshop.pojo.vo.TbItemCustom;
+import com.day.ttshop.pojo.vo.TbItemQuery;
 import com.day.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,10 +45,11 @@ public class ItemServiceImpl implements ItemService {
         return rs;
     }*/
     @Override  //多参数集合传入
-    public Result<TbItemCustom> listItems(Page page, Order order) {
+    public Result<TbItemCustom> listItems(Page page, Order order,TbItemQuery query) {
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("page", page);
         map.put("order", order);
+        map.put("query", query);
         //通过itemCustomDao获取total和rows
         long total = itemCustomDao.countItems();
         List<TbItemCustom> rows = itemCustomDao.listItemsByPage(map);

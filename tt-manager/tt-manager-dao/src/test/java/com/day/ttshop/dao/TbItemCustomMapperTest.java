@@ -19,12 +19,12 @@ public class TbItemCustomMapperTest {
     private TbItemCustomMapper itemCustomDao;
     @Test
     public void countItems() throws Exception {
-        System.out.println(itemCustomDao.countItems());
+//        System.out.println(itemCustomDao.countItems());
     }
 
     @Test
     public void listItemsByPage() throws Exception {
-        Page page = new Page();
+       /* Page page = new Page();
         page.setPage(1);
         page.setRows(10);
         Order order = new Order();
@@ -33,7 +33,7 @@ public class TbItemCustomMapperTest {
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("page", page);
         map.put("order", order);
-        System.out.println(itemCustomDao.listItemsByPage(map).size());
+        System.out.println(itemCustomDao.listItemsByPage(map).size());*/
     }
 
 }
